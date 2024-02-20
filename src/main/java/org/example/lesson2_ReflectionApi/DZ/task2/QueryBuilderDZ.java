@@ -10,41 +10,26 @@ public class QueryBuilderDZ {
      *
      * @return
      */
-    public String buildDeleteQuery(Object object, UUID pk) throws IllegalAccessException {
-        Class<?> clazz = object.getClass();
-
-        if (!clazz.isAnnotationPresent(Table.class)) {
-            return "";
-        }
+    public String buildDeleteQuery(Class<?> clazz, UUID primaryKey) {
         StringBuilder query = new StringBuilder("DELETE FROM ");
 
-        Table tableAnnotation = clazz.getAnnotation(Table.class);
-        query
-                .append(tableAnnotation.name())
-                .append("(");
+        if (clazz.isAnnotationPresent(Table.class)) {
+            Table tableAnnotation = clazz.getAnnotation(Table.class);
+            query.append(tableAnnotation.name()).append(" WHERE ");
 
-        Field[] fields = clazz.getDeclaredFields();
-        if (query.charAt(query.length() - 2) == ',') {
-            query.delete(query.length() - 2, query.length());
-        }
-        query.append(") WHERE ");
-
-        for (Field field : fields) {
-            if (field.isAnnotationPresent(Column.class)) {
-                Column columnAnnotation = field.getAnnotation(Column.class);
-                if (columnAnnotation.primaryKey()) {
-                    query.append(columnAnnotation.name())
-                            .append(" = ")
-                            .append("'")
-                            .append(pk)
-                            .append("'");
-                    break;
+            Field[] fields = clazz.getDeclaredFields();
+            for (Field field : fields) {
+                if (field.isAnnotationPresent(Column.class)) {
+                    Column columnAnnotation = field.getAnnotation(Column.class);
+                    if (columnAnnotation.primaryKey()) {
+                        query.append(columnAnnotation.name()).append(" = ").append(primaryKey);
+                        break;
+                    }
                 }
             }
         }
 
         return query.toString();
-
     }
 }
 
