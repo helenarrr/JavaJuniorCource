@@ -15,7 +15,7 @@ public class ProgramDZ {
         UUID pk = UUID.randomUUID();
         QueryBuilderDZ queryBuilder = new QueryBuilderDZ();
 
-        String deleteQuery = queryBuilder.buildDeleteQuery(employee, pk);
+        String deleteQuery = queryBuilder.buildDeleteQuery(employee.getClass(), pk);
 
         System.out.println("Delete query: " + deleteQuery);
     }
