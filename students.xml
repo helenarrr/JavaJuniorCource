@@ -1,0 +1,27 @@
+<ArrayList>
+  <item>
+    <name>Student1</name>
+    <age>22</age>
+    <gpa>5.0</gpa>
+  </item>
+  <item>
+    <name>Student2</name>
+    <age>22</age>
+    <gpa>3.0</gpa>
+  </item>
+  <item>
+    <name>Student3</name>
+    <age>22</age>
+    <gpa>3.0</gpa>
+  </item>
+  <item>
+    <name>Student4</name>
+    <age>22</age>
+    <gpa>4.0</gpa>
+  </item>
+  <item>
+    <name>Student5</name>
+    <age>22</age>
+    <gpa>5.0</gpa>
+  </item>
+</ArrayList>

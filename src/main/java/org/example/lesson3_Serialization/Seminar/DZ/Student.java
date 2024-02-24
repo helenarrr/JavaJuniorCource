@@ -4,15 +4,39 @@ import java.io.Serializable;
 
 public class Student implements Serializable {
 
-    String name;
-    int age;
-    transient double GPA; // Поле не сериализируется, так как помечено как "transient"
+    private String name;
+    private int age;
+    private transient double GPA; // Поле не сериализируется, так как помечено как "transient"
     //transient — это модификатор, указываемый перед полем класса (подобно другим модификаторам, таким как public, final и т.д.)
     //для обозначения того, что данное поле не должно быть сериализовано.
 
     Student(String name, int age, double GPA) {
         this.name = name;
         this.age = age;
+        this.GPA = GPA;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public double getGPA() {
+        return GPA;
+    }
+
+    public void setGPA(double GPA) {
         this.GPA = GPA;
     }
 
